@@ -1,6 +1,7 @@
 #include<iostream>
 #include<fstream>
 #include <bits/stdc++.h>
+#include<vector>
 using namespace std;
 
 class EncryptDecrypt{
