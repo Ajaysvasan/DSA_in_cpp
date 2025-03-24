@@ -1,3 +1,6 @@
 *.exe
 file_handling_and_excpetion_handling/
-sample.txt
+*.txt
+
+.vscode
+*.json

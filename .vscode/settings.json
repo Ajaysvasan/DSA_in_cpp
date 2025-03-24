@@ -58,6 +58,7 @@
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
     "*.txt": "python",
-    "iostream": "cpp"
+    "iostream": "cpp",
+    "cstddef": "cpp"
   }
 }
