@@ -25,16 +25,6 @@ I am following a structured learning path, which includes:
 - Object-Oriented Programming (OOP)
 - Memory Management & Optimization
 
-## 📂 Repository Structure
-```
-📦 cpp-learning-repo
- ┣ 📂 fundamentals
- ┣ 📂 dsa
- ┣ 📂 projects
- ┣ 📂 competitive-programming
- ┣ 📜 README.md
-```
-
 ## 🚀 How to Use
 To run any of the code files, ensure you have a C++ compiler installed (like `g++` for GCC or `cl` for MSVC).
 
