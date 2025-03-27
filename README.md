@@ -47,9 +47,9 @@ To run any of the code files, ensure you have a C++ compiler installed (like `g+
 ```
 
 ## 🔗 Connect with Me
-- 📧 Email: ajaysvasan@example.com
-- 🏆 LinkedIn: [Ajay S Vasan](https://www.linkedin.com/in/ajaysvasan)
-- 🏆 GitHub: [AjaySVasan](https://github.com/AjaySVasan)
+- 📧 Email: ajay192006@gmail.com
+- 🏆 LinkedIn: [Ajay S Vasan]([https://www.linkedin.com/in/ajaysvasan](https://www.linkedin.com/in/ajay-s-vasan-584111291/))
+- 🏆 GitHub: [AjaySVasan](https://github.com/Ajaysvasan)
 
 ---
 💡 *This repository will be continuously updated as I progress in my C++ learning journey.*
