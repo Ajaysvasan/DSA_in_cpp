@@ -51,6 +51,26 @@ std::ostream& operator<<(std::ostream& COUT, const std::vector<std::vector<int>>
 
 }
 
+void operator~(std::vector<std::vector<int>>&matrix){
+    for(int i = 0;i<matrix.size();i++){
+        for(int j = i+1;j<matrix[0].size();j++){
+            int temp = matrix[j][i];
+            matrix[j][i] = matrix[i][j];
+            matrix[i][j] = temp;
+        }
+    }
+}
+
+void transpose(std::vector<std::vector<int>>&matrix){
+    for(int i = 0;i<matrix.size();i++){
+        for(int j = i+1;j<matrix[0].size();j++){
+            int temp = matrix[j][i];
+            matrix[j][i] = matrix[i][j];
+            matrix[i][j] = temp;
+        }
+    }
+}
+
 std::ostream& operator<<(std::ostream& COUT,const Details& detail){
     COUT<<detail.name<<std::endl;
     COUT<<detail.age<<std::endl;
@@ -67,6 +87,7 @@ std::ostream& operator<<(std::ostream& COUT,const Collect& collect){
 main() {
     std::vector<std::vector<int>> matrix_one = {{1,2,3},{4,5,6},{7,8,9}};
     std::vector<std::vector<int>> matrix_two = {{10,11,12},{13,14,15},{16,17,18}};
+    std::vector<std::vector<int>> matrix_three = {{1,2,3},{4,5,6},{7,8,9}};
     std::vector<std::vector<int>> result = matrix_one*matrix_two;
     std::cout<<"result Matrix\n"<<result<<"matrix One\n"<<matrix_one<<"matrix Two\n"<<matrix_two;
 
@@ -79,5 +100,10 @@ main() {
     collect-=d2;
 
     std::cout<<collect;
+
+
+    std::cout<<"Before Transpsosing\n"<<matrix_three;
+    ~matrix_three;
+    std::cout<<"After Transposing\n"<<matrix_three;
 
 }
