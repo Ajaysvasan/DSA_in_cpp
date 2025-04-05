@@ -13,7 +13,7 @@ int partition(vector<int>&arr,int low,int high){
         }
     }
     swap(arr[i+1],arr[high]);
-    return arr[i+1];
+    return i+1;
 }
 
 void quickSort(vector<int>&arr,int low,int high){
