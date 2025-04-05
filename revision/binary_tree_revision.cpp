@@ -9,8 +9,8 @@ class Node{
         Node* left;
         Node* right;
         Node(int val){
-            data = val;
-            left = right = nullptr;
+            this->data = val;
+            this->left = this->right = nullptr;
         }
 };
 
@@ -78,12 +78,15 @@ class BinaryTree{
                 vector<int> arr;
                 switch(choice){
                     case 1:
+                        cout<<"Inorder Traversal"<<endl;
                         arr = inOrderTraversal(root,arr);
                         break;
                     case 2:
+                        cout<<"Postorder Traversal"<<endl;
                         arr = postOrderTraversal(root,arr);
                         break;
                     case 3:
+                        cout<<"Pre order Traversal"<<endl;
                         arr = preOrderTraversal(root,arr);
                         break;
                 }
