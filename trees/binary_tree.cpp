@@ -2,22 +2,19 @@
 #include <vector>
 using namespace std;
 
-// Node class
-class Node {
-public:
-    int data;
-    Node* leftChild;
-    Node* rightChild;
-
-    Node(int val) {
-        data = val;
-        leftChild = rightChild = nullptr;
-    }
-};
-
 // Binary Tree (BST) class
 class BinaryTree {
 private:
+    struct Node {
+        int data;
+        Node* leftChild;
+        Node* rightChild;
+
+        Node(int val) {
+            data = val;
+            leftChild = rightChild = nullptr;
+        }
+    };
     Node* root;
 
     // Helper: Insert node recursively
