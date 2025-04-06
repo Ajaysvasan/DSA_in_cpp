@@ -14,8 +14,7 @@ private:
             data = val;
             leftChild = rightChild = nullptr;
         }
-    };
-    Node* root;
+    }*root;
 
     // Helper: Insert node recursively
     Node* insertNode(Node* node, int data) {
