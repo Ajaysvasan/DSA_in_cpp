@@ -35,6 +35,7 @@ class JobSchedular{
             sleep(jobs.top().timeStamp);
             std::cout<<"The job has been executed"<<std::endl;
             jobs.pop();
+            m_count--;
         }
         void displayPendingTask(){
             std::priority_queue<Task> pendingTasks = jobs;
