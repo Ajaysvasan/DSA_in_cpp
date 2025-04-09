@@ -1,6 +1,7 @@
 #include<iostream>
 #include<queue>
 #include<unistd.h>
+#include<thread>
 
 class JobSchedular{
     private:
@@ -22,11 +23,11 @@ class JobSchedular{
         std::priority_queue<Task> jobs;
     
     public:
-        void addTask(std::string job_name,unsigned short job_priority,unsigned int timeStamp,unsigned int job_id){
-            if(job_priority>SHRT_MAX || job_priority < SHRT_MIN){
+        void addTask(std::string jobName,unsigned short jobPriority,unsigned int timeStamp,unsigned int jobId){
+            if(jobPriority>SHRT_MAX || jobPriority < SHRT_MIN){
                 throw -1;
             }
-            jobs.push({job_name,job_priority,timeStamp,job_id});
+            jobs.push({jobName,jobPriority,timeStamp,jobId});
             m_count++;
         }
 
@@ -53,22 +54,25 @@ class JobSchedular{
 };
 
 int main(){
-    JobSchedular job_schedular;
+    JobSchedular jobSchedular;
+    std::string jobName;
+    unsigned short jobpPriority;
+    unsigned int timeStamp ,id;
     try{
-        job_schedular.addTask("Run VS code",10,2,1);
-        job_schedular.addTask("Run spotify",5,9,2);
-        job_schedular.addTask("Run chome",7,10,3);
-        job_schedular.addTask("Run GPT",10,5,4);
+        jobSchedular.addTask("Run VS code",10,2,1);
+        jobSchedular.addTask("Run spotify",5,9,2);
+        jobSchedular.addTask("Run chome",7,10,3);
+        jobSchedular.addTask("Run GPT",10,5,4);
     }catch(int err){
         std::cout<<"Exception "<<err<<" Occured"<<std::endl;
     }catch(...){
         std::cout<<"Unknown Exception occured"<<std::endl;
     }
-    job_schedular.displayPendingTask();
+    jobSchedular.displayPendingTask();
     
-    job_schedular.runTask();
-    job_schedular.runTask();
+    jobSchedular.runTask();
+    jobSchedular.runTask();
 
-    job_schedular.displayPendingTask();
+    jobSchedular.displayPendingTask();
     return 0;
 }
