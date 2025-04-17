@@ -15,11 +15,6 @@ class EncryptDecrypt{
             }
             return arr;
         }
-
-        void decrypt(int line){
-            
-        }
-
     public:
         void writeInFile(){
             string line;
