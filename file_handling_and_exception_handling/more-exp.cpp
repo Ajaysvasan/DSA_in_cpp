@@ -42,11 +42,10 @@ void DeleteContents(){
 int main(){
     try{
         for(int i = 0;i<3;++i){
-            // write();
+            write();
         }
         read();
-        DeleteContents();
-        read();
+
     }catch(...){
         std::cerr<<"Exception occured\n";
     }
