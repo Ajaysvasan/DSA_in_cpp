@@ -1,5 +1,4 @@
 #include<iostream>
-using namespace std;
 
 struct Node
 {
@@ -11,7 +10,9 @@ class SLinkedList{
     Node* head;
     int count = 0;
     public:
-    SLinkedList(): head(NULL){}
+    SLinkedList(){
+        head=nullptr;
+    }
 
     void insertAtBeginning(int data){
         Node* new_node = new Node();
@@ -46,7 +47,7 @@ class SLinkedList{
             insertAtEnd(data);
             return;
         }else if(pos > count||pos < 1){
-            cout<<"Invalid pos";
+            std::cout<<"Invalid pos";
             return;
         }
         Node* new_node = new Node();
@@ -62,15 +63,15 @@ class SLinkedList{
     void display(){
         Node* temp = head;
         while(temp){
-            cout<<temp->data<<" ";
+            std::cout<<temp->data<<" ";
             temp = temp->next;
         }
-        cout<<endl;
+        std::cout<<std::endl;
     }
 
     void deleteAtBeginning(){
         if(!head){
-            cout<<"The list is empty";
+            std::cout<<"The list is empty";
             return;
         }
         Node* temp = head;
@@ -80,7 +81,7 @@ class SLinkedList{
 
     void deleteAtEnd(){
         if(!head){
-            cout<<"The list is empty";
+            std::cout<<"The list is empty";
             return;
         }
         if(!head->next){
@@ -112,7 +113,7 @@ main(){
     // Insert element at a specific position
     list1.insertAtPosition(15, 3);
 
-    cout << "Linked list after insertions: ";
+    std::cout << "Linked list after insertions: ";
     list1.display();
 
     list1.deleteAtBeginning();
@@ -123,5 +124,5 @@ main(){
     list1.deleteAtEnd();
 
     list1.display();
-
+    
 }
