@@ -8,3 +8,7 @@ file_handling_and_excpetion_handling/
 bplusExam.cpp
 
 build
+
+*.cpp~
+*.cpp.swp
+*.cpp.un~
