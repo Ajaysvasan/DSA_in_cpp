@@ -10,7 +10,7 @@
 #include <vector>
 
 std::ostream operator<<(std::ostream &COUT,
-                        std::vector<std::vector<int>> &triangle) {
+                        std::vector<std::vector<int>> &nums) {
   for (int i = 0; i < nums.size(); i++) {
     for (int j = 0; j < nums[0].size(); i++) {
       COUT << nums[i][j] << " ";
