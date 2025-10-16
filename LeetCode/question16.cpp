@@ -1,6 +1,7 @@
 #include<vector>
 #include<map>
 #include<algorithm>
+#include<iostream>
 
 class Solution{
 public:
@@ -23,3 +24,9 @@ public:
         return maxLength;
     }
 };
+
+int main(){
+  std::vector<int>nums  ={2,3,1,1,1};
+  Solution s;
+  std::cout<<s.longestSubarray(nums,3); 
+}
