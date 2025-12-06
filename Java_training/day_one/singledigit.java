@@ -33,5 +33,6 @@ public class singledigit {
 
         }
         System.out.println(result);
+        sc.close();
     }
 }

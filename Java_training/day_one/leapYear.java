@@ -39,6 +39,7 @@ public class leapYear {
         } else {
             System.out.println("Not a valid input");
         }
+        sc.close();
 
     }
 }
