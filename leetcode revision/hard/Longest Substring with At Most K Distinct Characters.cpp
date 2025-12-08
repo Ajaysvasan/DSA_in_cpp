@@ -1,20 +1,23 @@
 #include <string>
 #include <unordered_map>
-using namespace std;
 
-int longestSubstringWithKDistinct(string s, int k) {
-  int left = 0, maxLen = 0;
-  unordered_map<char, int> mpp;
-  for (int right = 0; right < s.size(); right++) {
-    mpp[s[right]]++;
+int maxSubString(std::string s, int k) {
+  int l = 0, result = 0;
+  std::unordered_map<char, int> mpp;
+
+  for (int r = 0; r < s.size(); r++) {
+    mpp[s[r]]++;
+
     while (mpp.size() > k) {
-      mpp[s[left]]--;
-      if (mpp[s[left]] == 0) {
-        mpp.erase(s[left]);
+      mpp[s[l]]--;
+      if (mpp[s[l]] == 0) {
+        mpp.erase(s[l]);
       }
-      left++;
+      l++;
     }
-    maxLen = max(maxLen, right - left + 1);
+
+    result = std::max(result, r - l + 1);
   }
-  return maxLen;
+
+  return result;
 }
