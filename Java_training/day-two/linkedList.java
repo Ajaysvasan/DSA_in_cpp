@@ -51,7 +51,7 @@ class LinkedList {
     }
 }
 
-public class Main {
+public class linkedList {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n, data;
