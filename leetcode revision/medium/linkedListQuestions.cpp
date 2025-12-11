@@ -58,6 +58,41 @@ public:
     }
     head = dummy.next;
   }
+  Node *addList(LinkedList *listOne, LinkedList *listTwo) {
+    Node dummy;
+    Node *tail = &dummy;
+    dummy.next = nullptr;
+
+    Node *tempOne = listOne->head;
+    Node *tempTwo = listTwo->head;
+
+    int carry = 0;
+
+    while (tempOne != nullptr || tempTwo != nullptr || carry != 0) {
+
+      int sum = carry;
+
+      if (tempOne != nullptr) {
+        sum += tempOne->data;
+        tempOne = tempOne->next;
+      }
+
+      if (tempTwo != nullptr) {
+        sum += tempTwo->data;
+        tempTwo = tempTwo->next;
+      }
+
+      carry = sum / 10;
+      sum = sum % 10;
+
+      Node *newNode = new Node();
+      newNode->data = sum;
+      tail->next = newNode;
+      tail = newNode;
+    }
+
+    return dummy.next;
+  }
 
   void diplay() {
     Node *temp = head;
