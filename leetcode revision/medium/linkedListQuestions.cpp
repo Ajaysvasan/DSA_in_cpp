@@ -93,6 +93,24 @@ public:
 
     return dummy.next;
   }
+  Node *oddEvenList(Node *head) {
+    if (!head || !head->next)
+      return head;
+
+    Node *odd = head;
+    Node *even = head->next;
+    Node *evenHead = even;
+
+    while (even && even->next) {
+      odd->next = even->next; // link odd to next odd
+      odd = odd->next;        // move odd pointer
+      even->next = odd->next; // link even to next even
+      even = even->next;      // move even pointer
+    }
+
+    odd->next = evenHead; // attach even list after odd list
+    return head;
+  }
 
   void diplay() {
     Node *temp = head;
