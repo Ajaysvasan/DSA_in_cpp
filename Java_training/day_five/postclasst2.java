@@ -1,85 +1,78 @@
 import java.util.*;
 
-public class postclasst2 {
+class Patient implements Comparable<Patient> {
+    String name;
+    int severity;
+
+    public Patient(String name, int severity) {
+        this.name = name;
+        this.severity = severity;
+    }
+
+    @Override
+    public int compareTo(Patient obj) {
+        return Integer.compare(obj.severity, this.severity);
+    }
+
+    @Override
+    public String toString() {
+        return name + " " + severity;
+    }
+}
+
+public class Main {
+    static PriorityQueue<Patient> pq = new PriorityQueue<>();
+
+    public static void enqueue(String name, int severity) {
+        pq.add(new Patient(name, severity));
+    }
+
+    public static void dequeue() {
+        if (pq.isEmpty()) {
+            System.out.println("Treated Patient: Queue is empty. No patient to treat.");
+        } else {
+            Patient p = pq.poll();
+            System.out.println("Treated Patient: " + p.name + " " + p.severity);
+        }
+    }
+
+    public static void display() {
+        if (pq.isEmpty()) {
+            System.out.println("Queue is empty.");
+        } else {
+            System.out.print("Current Queue: ");
+            List<Patient> temp = new ArrayList<>(pq);
+            for (int i = 0; i < temp.size(); i++) {
+                System.out.print(temp.get(i));
+                if (i < temp.size() - 1) {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println(" ");
+        }
+    }
+
     public static void main(String[] args) {
-
-        HashMap<Integer, String> mpp = new HashMap<>();
-        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
-
-        HashSet<Integer> seen = new HashSet<>();
-
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
+        sc.nextLine();
 
         for (int i = 0; i < n; i++) {
-            String choice = sc.next();
+            String line = sc.nextLine().trim();
+            String[] parts = line.split(" ");
+            String operation = parts[0];
 
-            if (choice.equals("ENQUEUE")) {
-                String name = sc.next();
-                int priority = sc.nextInt();
-
-                if (mpp.containsKey(priority)) {
-                    mpp.put(priority, mpp.get(priority) + " " + name);
-                } else {
-                    mpp.put(priority, name);
-
-                    if (!seen.contains(priority)) {
-                        maxHeap.add(priority);
-                        seen.add(priority);
-                    }
-                }
-            }
-
-            if (choice.equals("DEQUEUE")) {
-
-                if (maxHeap.isEmpty()) {
-                    System.out.println("Queue is empty");
-                    continue;
-                }
-
-                int priority = maxHeap.peek();
-                String line = mpp.get(priority);
-                String[] arr = line.split(" ");
-
-                String removedName = arr[0];
-
-                if (arr.length == 1) {
-
-                    mpp.remove(priority);
-                    maxHeap.poll();
-                    seen.remove(priority);
-                } else {
-                    StringBuilder sb = new StringBuilder();
-                    for (int j = 1; j < arr.length; j++) {
-                        sb.append(arr[j]);
-                        if (j != arr.length - 1)
-                            sb.append(" ");
-                    }
-                    mpp.put(priority, sb.toString());
-                }
-
-                System.out.println("Treated Patient: " + removedName);
-            }
-            if (choice.equals("DISPLAY")) {
-                if (maxHeap.isEmpty()) {
-                    System.out.println("Queue is empty. No patient to treat");
-                }
-
-                PriorityQueue<Integer> temp = new PriorityQueue<>(maxHeap);
-
-                while (!temp.isEmpty()) {
-                    int priority = temp.poll();
-
-                    if (!mpp.containsKey(priority))
-                        continue;
-
-                    String[] arr = mpp.get(priority).split(" ");
-                    for (String person : arr) {
-                        System.out.print(person + " " + priority + " ");
-                    }
-                }
-                System.out.println();
+            if (operation.equals("ENQUEUE")) {
+                String name = parts[1];
+                int severity = Integer.parseInt(parts[2]);
+                enqueue(name, severity);
+            } else if (operation.equals("DEQUEUE")) {
+                dequeue();
+            } else if (operation.equals("DISPLAY")) {
+                display();
             }
         }
+
+        sc.close();
     }
 }
