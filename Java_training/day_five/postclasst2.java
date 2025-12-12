@@ -33,23 +33,22 @@ public class postclasst2 {
             if (choice.equals("DEQUEUE")) {
 
                 if (maxHeap.isEmpty()) {
-                    System.out.println("EMPTY");
+                    System.out.println("Queue is empty");
                     continue;
                 }
 
                 int priority = maxHeap.peek();
-                String line = mpp.get(priority); // names at that priority
+                String line = mpp.get(priority);
                 String[] arr = line.split(" ");
 
-                String removedName = arr[0]; // remove first name
+                String removedName = arr[0];
 
                 if (arr.length == 1) {
-                    // No names left → remove entire priority
+
                     mpp.remove(priority);
-                    maxHeap.poll(); // remove from heap
+                    maxHeap.poll();
                     seen.remove(priority);
                 } else {
-                    // Rebuild remaining names
                     StringBuilder sb = new StringBuilder();
                     for (int j = 1; j < arr.length; j++) {
                         sb.append(arr[j]);
@@ -59,13 +58,13 @@ public class postclasst2 {
                     mpp.put(priority, sb.toString());
                 }
 
-                System.out.println("Dequeued: " + removedName);
+                System.out.println("Treated Patient: " + removedName);
             }
-
-            // ---------------- DISPLAY ----------------
             if (choice.equals("DISPLAY")) {
+                if (maxHeap.isEmpty()) {
+                    System.out.println("Queue is empty. No patient to treat");
+                }
 
-                // Copy heap (so original not destroyed)
                 PriorityQueue<Integer> temp = new PriorityQueue<>(maxHeap);
 
                 while (!temp.isEmpty()) {
@@ -76,7 +75,7 @@ public class postclasst2 {
 
                     String[] arr = mpp.get(priority).split(" ");
                     for (String person : arr) {
-                        System.out.print(person + "(" + priority + ") ");
+                        System.out.print(person + " " + priority + " ");
                     }
                 }
                 System.out.println();

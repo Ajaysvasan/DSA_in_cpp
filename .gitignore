@@ -12,3 +12,4 @@ build
 *.cpp~
 *.cpp.swp
 *.cpp.un~
+bin/
