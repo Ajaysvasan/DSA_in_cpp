@@ -1,3 +1,4 @@
+#include <deque>
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -5,97 +6,154 @@ using namespace std;
 // Binary Tree (BST) class
 class BinaryTree {
 private:
-    struct Node {
-        int data;
-        Node* leftChild;
-        Node* rightChild;
+  struct Node {
+    int data;
+    Node *leftChild;
+    Node *rightChild;
 
-        Node(int val) {
-            data = val;
-            leftChild = rightChild = nullptr;
-        }
-    }*root;
-
-    // Helper: Insert node recursively
-    Node* insertNode(Node* node, int data) {
-        if (node == nullptr)
-            return new Node(data);
-
-        if (data < node->data)
-            node->leftChild = insertNode(node->leftChild, data);
-        else
-            node->rightChild = insertNode(node->rightChild, data);
-
-        return node;
+    Node(int val) {
+      data = val;
+      leftChild = rightChild = nullptr;
     }
-
-    // Helper: In-order traversal recursively
-    void inOrderTraversal(Node* node, vector<int>& result) {
-        if (node) {
-            inOrderTraversal(node->leftChild, result);
-            result.push_back(node->data);
-            inOrderTraversal(node->rightChild, result);
-        }
-    }
-
-    // Helper: Search recursively
-    bool searchElement(Node* node, int target) {
-        if (node == nullptr) {
-            cout << "The element is not Found" << endl;
-            return false;
-        }
-        if (node->data == target) {
-            cout << "The element is Found" << endl;
-            return true;
-        }
-        if (target < node->data)
-            return searchElement(node->leftChild, target);
-        else
-            return searchElement(node->rightChild, target);
-    }
+  };
 
 public:
-    // Constructor
-    BinaryTree() {
-        root = nullptr;
-    }
+  Node *root;
 
-    // Public Insert
-    void insert(int data) {
-        root = insertNode(root, data);
-    }
+private:
+  // Helper: Insert node recursively
+  Node *insertNode(Node *node, int data) {
+    if (node == nullptr)
+      return new Node(data);
 
-    // Public In-order Traversal
-    vector<int> inOrderTraversal() {
-        vector<int> result;
-        inOrderTraversal(root, result);
-        return result;
-    }
+    if (data < node->data)
+      node->leftChild = insertNode(node->leftChild, data);
+    else
+      node->rightChild = insertNode(node->rightChild, data);
 
-    // Public Search
-    void search(int target) {
-        searchElement(root, target);
+    return node;
+  }
+
+  // Helper: In-order traversal recursively
+  // DFS
+  void inOrderTraversal(Node *node, vector<int> &result) {
+    if (node) {
+      inOrderTraversal(node->leftChild, result);
+      result.push_back(node->data);
+      inOrderTraversal(node->rightChild, result);
     }
+  }
+
+public:
+  void BFS(Node *node, int level, vector<vector<int>> &res) {
+    if (!node) {
+      return;
+    }
+    if (res.size() <= level) {
+      res.push_back(vector<int>());
+    }
+    res[level].push_back(node->data);
+    BFS(node->leftChild, level + 1, res);
+    BFS(node->rightChild, level + 1, res);
+  }
+  vector<vector<int>> levelOrder(Node *node) {
+    vector<vector<int>> res;
+    BFS(node, 0, res);
+    return res;
+  }
+
+  void zigzag(Node *node) {
+    if (!node)
+      return;
+    deque<Node *> dq;
+    dq.push_front(node);
+    bool leftToRight = true;
+    while (!dq.empty()) {
+      int size = dq.size();
+      for (int i = 0; i < size; i++) {
+        if (leftToRight) {
+          Node *temp = dq.front();
+          dq.pop_front();
+          cout << temp->data << " ";
+          if (temp->leftChild)
+            dq.push_back(temp->leftChild);
+          if (temp->rightChild)
+            dq.push_back(temp->rightChild);
+        } else {
+          Node *temp = dq.back();
+          dq.pop_back();
+          cout << temp->data << " ";
+          if (temp->rightChild)
+            dq.push_front(temp->rightChild);
+          if (temp->leftChild)
+            dq.push_front(temp->leftChild);
+        }
+      }
+
+      leftToRight = !leftToRight;
+    }
+  }
+
+private:
+  // Helper: Search recursively
+  bool searchElement(Node *node, int target) {
+    if (node == nullptr) {
+      cout << "The element is not Found" << endl;
+      return false;
+    }
+    if (node->data == target) {
+      cout << "The element is Found" << endl;
+      return true;
+    }
+    if (target < node->data)
+      return searchElement(node->leftChild, target);
+    else
+      return searchElement(node->rightChild, target);
+  }
+
+public:
+  // Constructor
+  BinaryTree() { root = nullptr; }
+
+  // Public Insert
+  void insert(int data) { root = insertNode(root, data); }
+
+  // Public In-order Traversal
+  vector<int> inOrderTraversal() {
+    vector<int> result;
+    inOrderTraversal(root, result);
+    return result;
+  }
+
+  // Public Search
+  void search(int target) { searchElement(root, target); }
 };
 
 // Main function
 int main() {
-    BinaryTree tree;
+  BinaryTree tree;
 
-    int values[] = {7, 4, 9, 1, 6, 8, 10};
-    for (int val : values) {
-        tree.insert(val);
+  int values[] = {7, 4, 9, 1, 6, 8, 10};
+  for (int val : values) {
+    tree.insert(val);
+  }
+
+  // In-order traversal
+  vector<int> inorder = tree.inOrderTraversal();
+  cout << "Inorder Traversal: ";
+  for (int val : inorder)
+    cout << val << " ";
+  cout << endl;
+
+  // Search test
+  tree.search(11); // Try changing this value
+  vector<vector<int>> res = tree.levelOrder(tree.root);
+  for (vector<int> nums : res) {
+    for (int num : nums) {
+      cout << num << " ";
     }
-
-    // In-order traversal
-    vector<int> inorder = tree.inOrderTraversal();
-    cout << "Inorder Traversal: ";
-    for (int val : inorder)
-        cout << val << " ";
-    cout << endl;
-
-    // Search test
-    tree.search(11);  // Try changing this value
-
-    return 0;
+  }
+  cout << "\nZigZag: ";
+  tree.zigzag(tree.root);
+  return 0;
 }
