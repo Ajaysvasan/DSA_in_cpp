@@ -13,6 +13,8 @@ class Node {
 
 class BinaryTree {
     Node root;
+    int count = 0;
+    int result = -1;
 
     BinaryTree() {
         root = null;
@@ -78,6 +80,22 @@ class BinaryTree {
             DFS(root);
             return;
         }
+    }
+
+    void ksmallest(int k, Node root) {
+        if (root == null)
+            return;
+
+        ksmallest(k, root.left);
+
+        count++;
+        if (count == k) {
+            System.out.println(root.data);
+            return;
+        }
+
+        // 3️⃣ Go right
+        ksmallest(k, root.right);
     }
 }
 
