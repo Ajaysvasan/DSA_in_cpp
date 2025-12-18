@@ -18,6 +18,7 @@ private:
   };
 
 public:
+  int maxHeight = 0;
   Node *root;
 
 private:
@@ -94,6 +95,16 @@ public:
     }
   }
 
+  void height(Node *node, int level) {
+    if (node == nullptr)
+      return;
+    if (level > maxHeight) {
+      maxHeight = level;
+    }
+    height(node->leftChild, level + 1);
+    height(node->rightChild, level + 1);
+  }
+
 private:
   // Helper: Search recursively
   bool searchElement(Node *node, int target) {
@@ -155,5 +166,7 @@ int main() {
   }
   cout << "\nZigZag: ";
   tree.zigzag(tree.root);
+  tree.height(tree.root, 0);
+  cout << "\n" << tree.maxHeight;
   return 0;
 }

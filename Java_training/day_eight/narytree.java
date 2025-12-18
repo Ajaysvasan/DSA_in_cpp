@@ -31,6 +31,9 @@ public class narytree {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         Node root = new Node(sc.nextInt());
+        // One root insertion
+        // here the level is 1
+
         for (int i = 1; i < n; i++) {
             root.children.add(new Node(sc.nextInt()));
         }
