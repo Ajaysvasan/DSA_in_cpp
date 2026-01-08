@@ -25,5 +25,5 @@ int main() {
   Solution s;
   int res = s.lengthOfLongestSubstring(str);
   int e_out = 3;
-  std::cout << (res == e_out) ? true : false;
+  std::cout << (res == e_out);
 }
