@@ -21,7 +21,6 @@ public:
       int x = heap.top().second;
       if (assigned_to_a < first_n) {
         cost += costs[x][0];
-        assigned_to_a++;
       } else {
         cost += costs[x][1];
       }
