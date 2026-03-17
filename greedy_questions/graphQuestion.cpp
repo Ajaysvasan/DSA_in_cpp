@@ -12,18 +12,15 @@
 
 int dfs(int r, int c, int n, std::vector<std::vector<int>> &matrix,
         std::vector<std::vector<int>> &memo) {
-  // If we already calculated the longest path starting from this cell, return
-  // it
   if (memo[r][c] != 0)
     return memo[r][c];
 
-  int max_len = 1; // Every cell is a path of at least length 1
+  int max_len = 1;
   std::vector<std::pair<int, int>> directions = {
       {1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
   for (auto [dr, dc] : directions) {
     int nr = r + dr, nc = c + dc;
-    // Check boundaries and if the next cell is strictly INCREASING
     if (nr >= 0 && nr < n && nc >= 0 && nc < n &&
         matrix[nr][nc] > matrix[r][c]) {
       max_len = std::max(max_len, 1 + dfs(nr, nc, n, matrix, memo));
