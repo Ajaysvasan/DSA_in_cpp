@@ -18,7 +18,7 @@ ll countMeals(ll T) {
   return total;
 }
 
-int main() {
+int foodStamp() {
   cin >> n;
   cin >> m;
 
@@ -59,6 +59,6 @@ int main() {
   if (totalMeals > m) {
     answer -= (totalMeals - m) * T;
   }
-
-  cout << answer << endl;
+  return answer;
 }
+int main() { foodStamp(); }
