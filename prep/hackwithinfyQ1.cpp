@@ -61,4 +61,46 @@ int foodStamp() {
   }
   return answer;
 }
-int main() { foodStamp(); }
+#include <bits/stdc++.h>
+
+int main() {
+  // Heap solution
+  int n;
+  ll m;
+  cin >> n >> m;
+
+  vector<ll> v(n), d(n);
+
+  for (int i = 0; i < n; i++)
+    cin >> v[i];
+  for (int i = 0; i < n; i++)
+    cin >> d[i];
+
+  // max heap: (current_value, decrement)
+  priority_queue<pair<ll, ll>> pq;
+
+  for (int i = 0; i < n; i++) {
+    pq.push({v[i], d[i]});
+  }
+
+  ll ans = 0;
+
+  while (m-- && !pq.empty()) {
+    auto [val, dec] = pq.top();
+
+    pq.pop();
+    if (val <= 0)
+      break;
+
+    ans += val;
+
+    ll next = val - dec;
+    if (next > 0) {
+      pq.push({next, dec});
+    }
+  }
+
+  cout << ans << endl;
+  // Binary search solution
+  foodStamp();
+}

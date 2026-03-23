@@ -1,7 +1,4 @@
-#include <algorithm>
-#include <climits>
 #include <iostream>
-#include <stack>
 #include <vector>
 using namespace std;
 int bestTimeToSellStocks2(vector<int> &stocks) {
