@@ -68,10 +68,35 @@ public:
       cout << endl;
     }
   }
+  void palidromeTriangle() {
+    for (int i = 1; i <= n; i++) {
+      for (int j = 1; j <= 2 * (n - i); j++) {
+        cout << " ";
+      }
+      for (int j = i; j >= 1; j--) {
+        cout << j << " ";
+      }
+      for (int j = 2; j <= i; j++) {
+        cout << j << " ";
+      }
+      cout << endl;
+    }
+  }
+  void rhombus() {
+    for (int i = 1; i <= n; i++) {
+      for (int j = 1; j <= n - i; j++) {
+        cout << " ";
+      }
+      for (int j = 1; j <= n; j++) {
+        cout << "*";
+      }
+      cout << endl;
+    }
+  }
 };
 
 int main(int argc, char *argv[]) {
   Patterns p(5);
-  p.zeroOnePattern();
+  p.rhombus();
   return 0;
 }
