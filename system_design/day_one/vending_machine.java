@@ -81,6 +81,7 @@ public class vending_machine {
         }
         if (product == null) {
             System.err.println("Invalid product id");
+            sc.close();
             return;
         }
         System.out.println("You have selected " + product.product_name + " and it costs \n" + product.price);

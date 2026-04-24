@@ -12,7 +12,6 @@ class Solution {
        return count;
     }
 };
-
 int main(){
     Solution s;
     string str = "12";
