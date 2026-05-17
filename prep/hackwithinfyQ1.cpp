@@ -1,6 +1,4 @@
 #include <bits/stdc++.h>
-#include <iostream>
-#include <vector>
 using namespace std;
 using ll = long long;
 
@@ -17,7 +15,6 @@ ll countMeals(ll T) {
   }
   return total;
 }
-
 int foodStamp() {
   cin >> n;
   cin >> m;
