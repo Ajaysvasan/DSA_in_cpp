@@ -1,7 +1,12 @@
+#include <iostream>
 struct ListNode {
   int data;
   ListNode *next;
-};
+  ListNode(int x) {
+    data = x;
+    next = nullptr;
+  }
+} *head;
 
 class Solution {
 public:
@@ -19,7 +24,7 @@ public:
       ListNode *temp = curr->next;
       curr->next = prev;
       prev = curr;
-      curr = t;
+      curr = prev;
     }
     p->next = prev;
     q->next = curr;
