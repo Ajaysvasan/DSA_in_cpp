@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#include <vector>
 
 int longestPalindromicSequence(std::string &s) {
   int n = s.size();
