@@ -1,47 +1,33 @@
-#include <iostream>
-#include <queue>
-#include <vector>
+#include <algorithm>
+#include <utility>
 
-struct Node {
+struct TreeNode {
   int data;
-  Node *right;
-  Node *left;
-  Node(int data) {
+  TreeNode *right;
+  TreeNode *left;
+  TreeNode(int data) {
     this->data = data;
     right = nullptr;
     left = nullptr;
   }
-};
+} *root;
 
-class BinaryTree {
-  Node *root;
-  Node *insertIntoTree(int data, Node *root) {
-    if (root == nullptr) {
-      root = new Node(data);
-      return root;
+class Solution {
+  std::pair<int, int> dfs(TreeNode *node) {
+    if (node == nullptr) {
+      return {0, 0};
     }
-    std::queue<Node *> q;
-    q.push(root);
-    while (!q.empty()) {
-      Node *curr_node = q.front();
-      q.pop();
-      q.push(curr_node);
-      if (curr_node->left != nullptr) {
-        q.push(curr_node->left);
-      } else {
-        curr_node->left = new Node(data);
-        return root;
-      }
-      if (curr_node->right != nullptr) {
-        q.push(curr_node->right);
-      } else {
-        curr_node->right = new Node(data);
-        return root;
-      }
-    }
+    auto left = dfs(node->left);
+    auto right = dfs(node->right);
+    int take = node->data + left.second + right.second;
+    int skip =
+        std::max(left.first, left.second) + std::max(right.first, right.second);
+    return {take, skip};
   }
 
 public:
-  BinaryTree() { root = nullptr; }
-  void insert(int data) { root = insertIntoTree(data, root); }
+  int rob(TreeNode *root) {
+    std::pair<int, int> result = dfs(root);
+    return std::max(result.first, result.second);
+  }
 };
