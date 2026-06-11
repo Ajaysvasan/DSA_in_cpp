@@ -23,6 +23,7 @@ int longestSubarrayWithSumK(vector<int> &nums, int k) {
     sum += nums[right];
     while (sum < k) {
       sum -= nums[left];
+      left++;
     }
     if (sum == k) {
       max_len = max(max_len, right - left + 1);

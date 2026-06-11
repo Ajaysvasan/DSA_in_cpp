@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Class to represent the solution
 class Solution {
 private:
   // Function to perform Topological Sort using Kahn's Algorithm (BFS)

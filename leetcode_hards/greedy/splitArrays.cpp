@@ -13,7 +13,7 @@ public:
       if (freq[num] <= 0) {
         continue;
       }
-      if (need[num] > 0) {
+      if (need[num] > 1) {
         freq[num]--;
         need[num]--;
         need[num + 1]++;
