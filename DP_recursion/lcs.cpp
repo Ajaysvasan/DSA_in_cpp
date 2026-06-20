@@ -27,7 +27,7 @@ int lcs(std::string &s1, std::string &s2) {
 
 int lcsTab(std::string &s1, std::string &s2) {
   std::vector<std::vector<int>> dp(s1.size() + 1,
-                                   std::vector<int>(s2.size() + 1, -1));
+                                   std::vector<int>(s2.size() + 1, 0));
   for (int i = 0; i <= s1.size(); i++) {
     dp[i][0] = 0;
   }
